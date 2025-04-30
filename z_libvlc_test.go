@@ -11,7 +11,7 @@ func Test_player(t *testing.T) {
 		panic(err)
 	}
 
-	player, err := NewPlayer(nil)
+	player, err := NewPlayer("--no-video", "--quiet")
 	if err != nil {
 		t.Errorf("Failed to create player: %v", err)
 	}
@@ -40,8 +40,8 @@ func Test_player(t *testing.T) {
 	fmt.Println("Vout Event Recivet")
 
 	//windows: VLC (Direct3D11 output)
-	//Linux:  VLC Media Player
-	closeChan := player.WindowCloseEvent("VLC Media Player")
+	//Linux:  VLC media Test_player
+	closeChan := player.WindowCloseEvent("VLC media player")
 	<-closeChan
 	fmt.Println("Player window closed")
 	player.Release()

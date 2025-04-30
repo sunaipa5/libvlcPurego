@@ -11,16 +11,18 @@ type Player struct {
 	Player   uintptr
 }
 
-func NewPlayer(args []string) (*Player, error) {
+func NewPlayer(args ...string) (*Player, error) {
 	var argv **byte = nil
+	var argc int = 0
 
 	if len(args) != 0 {
+		argc = len(args)
 		var cleanup func()
 		argv, cleanup = stringSliceToPtrPtrByte(args)
 		defer cleanup()
 	}
 
-	instance := newVLC(0, argv)
+	instance := newVLC(argc, argv)
 	if instance == 0 {
 		return nil, fmt.Errorf("libvlc_new failed")
 	}
