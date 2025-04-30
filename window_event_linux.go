@@ -120,3 +120,19 @@ func windowCloseEvent(display uintptr, window uintptr) <-chan struct{} {
 
 	return ch
 }
+
+func cStringToGoString(ptr *byte) string {
+	if ptr == nil {
+		return ""
+	}
+	var bytes []byte
+	base := uintptr(unsafe.Pointer(ptr))
+	for i := uintptr(0); ; i++ {
+		b := *(*byte)(unsafe.Pointer(base + i))
+		if b == 0 {
+			break
+		}
+		bytes = append(bytes, b)
+	}
+	return string(bytes)
+}

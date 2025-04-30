@@ -15,3 +15,4 @@ func stringSliceToPtrPtrByte(args []string) (**byte, func()) {
 	return (**byte)(unsafe.Pointer(&ptrs[0])), func() {
 	}
 }
+

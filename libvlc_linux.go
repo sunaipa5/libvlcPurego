@@ -9,7 +9,6 @@ import (
 )
 
 func initLib(libPath string) (uintptr, error) {
-
 	lib_location := "libvlc.so"
 	if libPath == "" {
 		libPath = ""
